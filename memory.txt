@@ -1,0 +1,6 @@
+# "No. of Nodes" "No Tracing" "Trace Sources" "Socket Statistics"
+50 3.7 3.8 4.5
+100 5.4 5.9 7.1
+200 9.1 10.1 12.3
+350 14.7 16.4 20.3
+500 20 22.6 26.2
