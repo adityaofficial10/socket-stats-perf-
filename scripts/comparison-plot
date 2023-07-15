@@ -1,0 +1,67 @@
+# GNUPlot script for bar graph (Figure 4)
+# Clone this git repository to get the dataset files
+
+unset label
+set title ""
+set ylabel "Congestion Window (Bytes)" font ",20"
+set ylabel "Congestion Window (Bytes)" offset -1,0,0
+set xlabel "Time (Seconds)" font ",20"
+set tics font ",20"
+set key font ",20"
+set xtics ("0"0,"10" 10, "20" 20,"30" 30,"40" 40,"50" 50,"60" 60,"70" 70,"80" 80,"90" 90)
+set label gprintf('x10^{%T}', 50000) at graph 0.0, screen 0.94 offset 0,0.75 font ",17"
+set term eps
+set yrange [13:24]
+
+# Congestion Window - TCP Cubic, TCP BBR and TCP LinuxReno
+
+# Add the paths to the Cubic tracing cwnd and ss cwnd dataset files available in this repository
+
+set term eps
+set output "Cubic-cwnd.eps"
+plot "path-to-tcp-cubic-tracing-cwnd-dataset-file" using 1:($2/10000) lc rgb "blue" lw 2 title "Trace Sources" with lines,\
+"path-to-tcp-cubic-ss-dataset-file" using 1:($2/10000) lc rgb "#ed1c1c" lw 2 title "Socket Statistics" with lines
+
+unset yrange
+
+# Add the paths to the BBR tracing cwnd and ss cwnd dataset files available in this repository
+
+set output "BBR-cwnd.eps"
+plot "path-to-tcp-bbr-tracing-cwnd-dataset-file" using 1:($2/10000) lc rgb "blue" lw 2 title "Trace Sources" with lines,\
+"path-to-tcp-bbr-ss-cwnd-dataset-file" using 1:($2/10000) lc rgb "#ed1c1c" lw 2 title "Socket Statistics" with lines
+
+# Add the paths to the LinuxReno tracing cwnd and ss cwnd dataset files available in this repository
+
+set output "LinuxReno-cwnd.eps"
+plot "path-to-tcp-linuxreno-tracing-cwnd-dataset-file" using 1:($2/10000) lc rgb "blue" lw 2 title "Trace Sources" with lines,\
+"path-to-tcp-linuxreno-ss-cwnd-dataset-file" using 1:($2/10000) lc rgb "#ed1c1c" lw 2 title "Socket Statistics" with lines
+
+unset label
+
+# RTT - TCP Cubic, TCP BBR and TCP LinuxReno
+
+# Add the paths to the BBR tracing rtt and ss rtt dataset files available in this repository
+
+set ylabel"RTT (Milliseconds)" font ",20"
+
+set yrange[40:220]
+set output "BBR-rtt.eps"
+plot "path-to-tcp-bbr-tracing-rtt-dataset-file" using 1:2 lc rgb "blue" lw 2 title "Trace Sources" with lines,\
+"path-to-tcp-bbr-ss-rtt-dataset-file" using 1:2 lc rgb "#ed1c1c" lw 2 title "Socket Statistics" with lines
+
+# Add the paths to the LinuxReno tracing rtt and ss rtt dataset files available in this repository
+
+unset yrange
+set yrange [40:220]
+set output "LinuxReno-rtt.eps"
+plot "path-to-tcp-linuxreno-tracing-rtt-dataset-file" using 1:($2/1000) lc rgb "blue" lw 2 title "Trace Sources" with lines,\
+"path-to-tcp-linuxreno-ss-rtt-dataset-file" using 1:($2/1000) lc rgb "#ed1c1c" lw 2 title "Socket Statistics" with lines
+unset yrange
+
+# Add the paths to the Cubic tracing rtt and ss rtt dataset files available in this repository
+
+set yrange [40:220]
+
+set output "Cubic-rtt.eps"
+plot "path-to-tcp-cubic-tracing-rtt-dataset-file" using 1:2 lc rgb "blue" lw 2 title "Trace Sources" with lines,\
+"path-to-tcp-cubic-ss-rtt-dataset-file" using 1:2 lc rgb "#ed1c1c" lw 2 title "Socket Statistics" with lines

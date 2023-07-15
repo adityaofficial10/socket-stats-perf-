@@ -1,0 +1,64 @@
+# GNUPlot script for bar graph (Figure 5 and Figure 6)
+# Clone this git repository to get the dataset files
+
+set term postscript eps color blacktext 'Times:Roman'
+set output "bargraph-memoryConsumed.eps"
+
+set title ""
+set xlabel "No. of Nodes"
+set ylabel "Peak Memory Consumption (MB)"
+set grid ytics
+set boxwidth 1
+set style data histogram
+set style fill solid border rgb "black"
+set auto x
+set style fill pattern border -1
+set yrange [0:40]
+
+# Add the memory dataset file path avaiable in the repository
+plot 'path-to-the-memory-dataset-file' using 2:xtic(1) fs pattern 3 title col, '' using 3:xtic(1) fs pattern 5 title col, \
+'' using 4:xtic(1) title col,
+
+
+set term postscript eps color blacktext 'Times:Roman'
+set output "bargraph-TimeTaken.eps"
+
+set title ""
+set xlabel "No. of Nodes"
+set ylabel "Time Taken (Seconds)"
+set grid ytics
+set boxwidth 1
+set style data histogram
+set style fill solid border rgb "black"
+set auto x
+set yrange [0:28]
+
+
+# Add the memory dataset file path avaiable in the repository
+plot 'path-to-the-time-dataset-file' using 2:xtic(1) lc rgb "#4169e1" title col, '' using 3:xtic(1) lc rgb "#add8e6" title col, \
+'' using 4:xtic(1) lc rgb "#666666" title col,
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
